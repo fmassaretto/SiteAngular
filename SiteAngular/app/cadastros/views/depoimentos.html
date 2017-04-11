@@ -1,0 +1,60 @@
+﻿<div ng-controller="cadastros.views.depoimentos as vm">
+    <div class="md-actions" layout layout-align="end center">
+        <md-subheader>Depoimentos</md-subheader>
+        <span flex></span>
+    </div>
+    <md-divider></md-divider>
+
+</div>
+
+
+<script type="text/ng-template" id="cadastro.html">
+    <md-dialog aria-label="Cadastro de Depoimentos">
+        <md-toolbar>
+            <div style="background-color:#0387d1;" class="md-toolbar-tools">
+                <h2>Cadastro de Depoimentos</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.fecharModal()">
+                    <md-icon aria-label="Close dialog">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:500px;max-height:500px;">
+            <form name="MyForm" novalidate>
+                <md-content layout-padding style="width:440px">
+                    <div flex-sm="400" flex-gt-sm="400" layout-sm="column">
+                        <div layout="row" flex>
+                            <div flex>
+                                <div style="margin-top: 30px; min-height: 75px;" layout="row">
+                                    <div style="margin-top: -22px" flex="100">
+                                        <div style="position: relative;left: auto; right: 0; height:50px;">
+                                            <md-input-container class="md-block" style="margin-top:0px">
+                                                <label>Nome Cliente</label>
+                                                <input type="text" ng-model="vm.nomeCliente" md-minlength="1" md-maxlength="50" required />
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="min-height: 75px;" layout="row">
+                                    <div style="margin-top: -22px" flex="100">
+                                        <div style="position: relative;left: auto; right: 0; height:50px;">
+                                            <md-input-container class="md-block">
+                                                <label>Depoimento</label>
+                                                <textarea ng-model="vm.descricao" md-maxlength="200" rows="2" md-select-on-focus required></textarea>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+                <div style="width:100%; background-color: #D0EAF8; justify-content: flex-end" layout="row">
+                    <md-button class="md-raised md-warn" ng-click="vm.fecharModal()">Cancelar</md-button>
+                    <md-button class="md-raised md-primary" button-busy="vm.saving" busy-text="Salvando..." ng-disabled="MyForm.$invalid" style="margin-right:20px;">Salvar</md-button>
+                </div>
+            </form>
+        </md-dialog-content>
+        <!--</form>-->
+    </md-dialog>
+</script>

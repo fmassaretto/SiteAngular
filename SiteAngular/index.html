@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link href="../../css/angular/angular-material.min.css" rel="stylesheet" />
+    <link href="../../css/app.css" rel="stylesheet" />
+    <link href="bower_components/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body ng-app="app" ng-controller="comum.views.inicio as vm">
+
+    <div layout="row" layout-fill ng-cloak>
+        <md-sidenav style="background: #364150; width: 300px" class="md-sidenav-left md-whiteframe-z2" role="sidenav" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+            <md-toolbar style="background: #0387d1;" class="md-tall md-hue-2" layout-align="end end">
+                <div class="md-toolbar-tools" layout layout-padding>
+                    <md-icon style="position: relative; margin-right: 10px; top: -5px">face</md-icon>
+                    <div layout="column" class="md-toolbar-tools-bottom inset">
+                        <span class="md-body-2">Bem-vindo,</span>
+                        <span class="md-caption">Fernando</span>
+                    </div>
+                    <span flex></span>
+                    <md-menu>
+                        <md-button class="md-icon-button" aria-label="User Settings" ng-click="vm.openMenu($mdOpenMenu, $event)">
+                            <md-icon>more_vert</md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item>
+                                <md-button>
+                                    <md-icon md-menu-align-target="">vpn_key</md-icon>Mudar Senha
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button>
+                                    <md-icon md-menu-align-target="">power</md-icon>Logoff
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+            </md-toolbar>
+            <md-content style="background: #364150" role="navigation">
+                <md-list>
+                    <md-list-item ng-repeat="item in vm.menuPrincipal" ng-click="vm.abrir(item.url)">
+                        <md-icon style="color:#b4bcc8;">{{item.icon}}</md-icon>
+                        <p style="color:#b4bcc8;min-width: 150px;" class="md-body-2">{{item.nome}}</p>
+                        <span flex></span>
+                        <md-icon style="color:#b4bcc8;">chevron_right</md-icon>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </md-sidenav>
+        <section layout="column" role="main" flex>
+            <div data-ng-include="'../../app/comum/views/header.html'" data-ng-controller="comum.views.header as vm"></div>
+            <section id="content" role="content" layout="column" layout-padding md-scroll-y>
+                <md-content class="md-whiteframe-z2" ng-cloak>
+                    <md-list ui-view>
+                    </md-list>
+                </md-content>
+            </section>
+            <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="vm.abrirModal($event)">
+                <md-icon>add</md-icon>
+            </md-button>
+        </section>
+    </div>
+
+    <script src="componentes/jquery/js/jquery.min.js"></script>
+    <script src="componentes/angular/angular.js"></script>
+    <script src="componentes/angular/angular-animate.min.js"></script>
+    <script src="componentes/angular/angular-messages.min.js"></script>
+    <script src="componentes/svg-assets-cache/js/svg-assets-cache.js"></script>
+    <script src="componentes/angular/angular-ui-router.min.js"></script>
+    <script src="componentes/angular/angular-aria.min.js"></script>
+    <script src="componentes/angular/angular-material.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+    
+    <script src="app/app.js"></script>
+
+    <script src="app/comum/views/inicio.js"></script>
+    <script src="app/comum/views/header.js"></script>
+    <script src="app/comum/views/home.js"></script>
+    <script src="app/cadastros/views/depoimentos.js"></script>
+    <script src="app/localizacao/controllers/localizacaoCtrl.js"></script>
+    <script src="app/cadastros/views/modalDepoimento.js"></script>
+    <script src="app/localizacao/controllers/localizacaoMapCtrl.js"></script>
+    <script src="app/localizacao/controllers/modalMapsCtrl.js"></script>
+    
+</body>
+
+</html>

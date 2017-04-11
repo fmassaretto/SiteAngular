@@ -1,0 +1,47 @@
+﻿#map {
+  width: 500px;
+  height: 300px;
+  background-color: red;
+}
+
+.gray {
+    background: #364150;
+}
+
+.cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width: 500px;
+    height: 350px;
+}
+
+md-input-container > label {
+    font-size: 14px !important;
+    line-height: 24px !important;
+}
+
+.Fernando {
+    color: #000 !important;
+}
+
+    .Fernando:after {
+        background: rgb(221,44,0) !important;
+    }
+
+.md-datepicker-button {
+    position: relative !important;
+    margin-left: 33px !important;
+}
+
+.md-datepicker-input-container {
+    margin-left: -5px;
+}
+
+.md-calendar-day-header {
+    background: #0387d1 !important;
+    color: #fff;
+}
+
+body + object {
+    display: none;
+}

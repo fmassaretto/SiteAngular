@@ -1,0 +1,83 @@
+﻿<div ng-controller="localizacao.controllers.localizacaoCtrl as vm">
+    <script>
+        function initMap() {
+            var uluru = { lat: -23.363, lng: 46.044 };
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        };
+    </script>
+    <div class="md-actions" layout layout-align="end center">
+        <md-subheader>Localização</md-subheader>
+        <span flex></span>
+    </div>
+    <md-divider></md-divider>
+
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>Buscar por Cidade</label>
+        <md-icon md-svg-src="img/icons/ic_search_black_24px.svg" class="search"></md-icon>
+        <input ng-model="buscarCidade">
+    </md-input-container>
+
+    <md-table-container>
+        <table md-table md-row-select multiple ng-model="vm.selected" md-progress="vm.promise">
+            <thead md-head md-order="vm.query.order" md-on-reorder="vm.results">
+                <tr md-row>
+                    <th md-column md-order-by="vm.ordenarPor('ranking')" md-numeric><span><a href="" ng-class="" ng-click="vm.ordenarPor('ranking')">Ranking</a></span></th>
+                    <th md-column md-order-by="vm.ordenarPor('city')"><span><a href="" ng-click="vm.ordenarPor('city')">Cidades</a></span></th>
+                    <th md-column md-numeric>Latitude</th>
+                    <th md-column md-numeric>Longitude</th>
+                    <th md-column md-numeric>Distância</th>
+                    <th md-column>País</th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row md-select="result" md-select-id="city" md-auto-select ng-repeat="result in vm.results | filter: buscarCidade | orderBy: vm.criterioOrdenacao:vm.direcaoOrdenacao">
+                    <td md-cell>{{result.ranking}}</td>
+                    <td md-cell> <a href="" ng-click="vm.abrirModal($event,result.lat,result.lon)">{{result.city}}</a> </td>
+                    <td md-cell>{{result.lat}}</td>
+                    <td md-cell>{{result.lon}}</td>
+                    <td md-cell>{{result.distance}}</td>
+                    <td md-cell>{{result.localized_country_name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.results.length}}" md-on-paginate="vm.query" md-page-select></md-table-pagination>
+    <img src="https://maps.googleapis.com/maps/api/staticmap?center=Jundiai,Sao+Paulo,SP&zoom=13&size=500x300&maptype=roadmap%20&markers=color:blue" alt="Smiley face" id="map">
+</div>
+    <script type="text/ng-template" id="map.html">
+        <md-dialog aria-label="Localização da Cidade" id="modal">
+            <md-toolbar>
+                <div style="background-color:#0387d1;" class="md-toolbar-tools">
+                    <h2>Localização da Cidade</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="vm.fecharModal()">
+                        <md-icon aria-label="Close dialog">clear</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-dialog-content style="max-width:500px;max-height:500px;">
+                <md-content layout-padding style="width:440px">
+                    <div flex-sm="400" flex-gt-sm="400" layout-sm="column">
+                        <div layout="row" flex>
+                            <div flex>
+                                <div style="min-height: 75px;" layout="row">
+                                    <img ng-src="{{vm.citySelecionada}}" alt="Smiley face" id="map">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-dialog-content>
+        </md-dialog>
+
+    </script>{{vmMap.src}}
+
+
